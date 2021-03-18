@@ -31,6 +31,6 @@ steps:
 - task: AzureWebApp@1
   inputs:
     azureSubscription: '2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d'
-    appName: 'ASP-testcustomer01-9022'
+    appName: 'azure-test-angular'
     package: '$(System.DefaultWorkingDirectory)'
     customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
