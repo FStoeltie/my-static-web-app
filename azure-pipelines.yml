@@ -49,5 +49,5 @@ steps:
     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
     appType: 'webAppLinux'
     appName: 'azure-test-angular'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     runtimeStack: 'NODE|12-lts'
