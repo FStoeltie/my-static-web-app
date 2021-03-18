@@ -23,11 +23,19 @@ steps:
   displayName: 'npm install and build'
   workingDirectory: angular-app/
 
+# - task: ArchiveFiles@2
+#   inputs:
+#     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+#     includeRootFolder: true
+#     archiveType: zip
+    
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
     includeRootFolder: true
-    archiveType: zip
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 
 # - task: AzureWebApp@1
 #   inputs:
