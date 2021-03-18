@@ -26,7 +26,7 @@ steps:
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-    includeRootFolder: false
+    includeRootFolder: true
     archiveType: zip
 
 # - task: AzureWebApp@1
@@ -41,5 +41,5 @@ steps:
     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
     appType: 'webAppLinux'
     appName: 'azure-test-angular'
-    package: '$(System.DefaultWorkingDirectory)/*.zip'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     runtimeStack: 'NODE|12-lts'
