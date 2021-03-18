@@ -48,9 +48,8 @@ steps:
   inputs:
     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
     appType: webApp
-    appName: 'azure-test-angular'
+    appName: 'test-angular-ls'
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    slotName: staging
     runtimeStack: 'NODE|12-lts'
 
 # - task: AzureWebApp@1
