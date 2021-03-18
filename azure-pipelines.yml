@@ -6,6 +6,7 @@
 trigger:
 - main
 
+
 pool:
   vmImage: ubuntu-latest
 
@@ -20,3 +21,4 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
+  workingDirectory: angular-app/
