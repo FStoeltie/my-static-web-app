@@ -22,3 +22,10 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
   workingDirectory: angular-app/
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d'
+    appName: 'ASP-testcustomer01-9022'
+    package: '$(System.DefaultWorkingDirectory)'
+    customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
