@@ -61,7 +61,7 @@ steps:
     resourceGroupName: 'test_customer_01'
     slotName: 'production'
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    deploymentMethod: 'auto'
+    deploymentMethod: 'zipDeploy'
 
 
 # - task: AzureWebApp@1
