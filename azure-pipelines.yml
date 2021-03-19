@@ -44,13 +44,25 @@ steps:
 #     package: '$(System.DefaultWorkingDirectory)'
 #     customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
 
+# - task: AzureWebApp@1
+#   inputs:
+#     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
+#     appType: webApp
+#     appName: 'test-angular-ls'
+#     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+#     runtimeStack: 'NODE|12-lts'
+
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
-    appType: webApp
-    appName: 'test-angular-ls'
+    appType: 'webApp'
+    appName: 'ls-angular-test'
+    deployToSlotOrASE: true
+    resourceGroupName: 'test_customer_01'
+    slotName: 'production'
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    runtimeStack: 'NODE|12-lts'
+    deploymentMethod: 'auto''
+
 
 # - task: AzureWebApp@1
 #   inputs:
