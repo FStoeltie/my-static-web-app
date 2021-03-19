@@ -32,18 +32,18 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
 
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
     appType: 'webAppLinux'
     appName: 'ls-test-angular'
-    package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     runtimeStack: 'NODE|12-lts'
     startUpCommand: 'pm2 serve /home/site/wwwroot --no-daemon --spa'
 
