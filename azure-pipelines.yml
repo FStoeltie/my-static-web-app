@@ -23,11 +23,6 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
-# - task: ArchiveFiles@2
-#   inputs:
-#     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-#     includeRootFolder: true
-#     archiveType: zip
     
 - task: ArchiveFiles@2
   inputs:
@@ -37,32 +32,6 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
-# - task: AzureWebApp@1
-#   inputs:
-#     azureSubscription: '2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d'
-#     appName: 'azure-test-angular'
-#     package: '$(System.DefaultWorkingDirectory)'
-#     customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
-
-# - task: AzureWebApp@1
-#   inputs:
-#     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
-#     appType: webApp
-#     appName: 'test-angular-ls'
-#     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-#     runtimeStack: 'NODE|12-lts'
-
-# - task: AzureWebApp@1
-#   inputs:
-#     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
-#     appType: 'webApp'
-#     appName: 'ls-angular-test'
-#     deployToSlotOrASE: true
-#     resourceGroupName: 'test_customer_01'
-#     slotName: 'production'
-#     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-#     deploymentMethod: 'zipDeploy'
-
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
@@ -70,18 +39,11 @@ steps:
     publishLocation: 'Container'
 
 - task: AzureWebApp@1
-  displayName: 'Deploy Azure Web App : $(webAppName)'
   inputs:
-    azureSubscription: Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
-    appName: ls-test-angular'
-    appType: webAppLinux
-    package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip 
+    azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
+    appType: 'webAppLinux'
+    appName: 'ls-test-angular'
+    package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+    runtimeStack: 'NODE|12-lts'
+    startUpCommand: 'pm2 serve /home/site/wwwroot --no-daemon --spa'
 
-
-# - task: AzureWebApp@1
-#   inputs:
-#     azureSubscription: 'Azure RD research plan - Ferdi Stoeltie(2dda353d-ea8e-4c76-9e7d-0cbec6f34e5d)'
-#     appType: 'webAppLinux'
-#     appName: 'azure-test-angular'
-#     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-#     runtimeStack: 'NODE|12-lts'
